@@ -10,7 +10,10 @@ function ToDoFirst() {
         <form>
             <TextField id="standard-basic" label="What needs to be done?"
                        InputProps={{
-                           startAdornment: <InputAdornment position="start"> <ExpandMoreIcon classes={{root: classes.root}} /></InputAdornment>,
+                           startAdornment:
+                               <InputAdornment position="start">
+                                   <ExpandMoreIcon classes={{root: classes.root}} />
+                               </InputAdornment>,
                        }}
             />
         </form>
