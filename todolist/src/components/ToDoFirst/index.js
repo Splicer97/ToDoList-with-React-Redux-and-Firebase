@@ -8,7 +8,10 @@ function ToDoFirst() {
     const classes = useStyles()
     return (
         <form>
-            <TextField id="standard-basic" label="What needs to be done?"
+            <TextField
+                id="standard-basic"
+                label="What needs to be done?"
+                fullWidth
                        InputProps={{
                            startAdornment:
                                <InputAdornment position="start">

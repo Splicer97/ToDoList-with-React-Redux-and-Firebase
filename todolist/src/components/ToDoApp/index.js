@@ -1,17 +1,18 @@
 import React from 'react';
 import ToDoHead from "../ToDoHead";
-import ToDoFirst from "../ToDoFirst";
 import useStyles from "./styles";
-import ToDoPlace from "../ToDoPlace";
+import ToDoBox from "../ToDoBox";
+import {Container} from "@material-ui/core";
 
 
 function ToDoApp() {
     const classes = useStyles()
     return (
         <>
+            <Container maxWidth="sm">
             <ToDoHead/>
-            <ToDoFirst/>
-            <ToDoPlace/>
+            <ToDoBox/>
+        </Container>
         </>
     );
 }

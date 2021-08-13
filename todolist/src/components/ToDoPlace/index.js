@@ -4,6 +4,8 @@ import useStyles from "./styles";
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
+
 
 function ToDoPlace() {
     const [checked, setChecked] = React.useState(false);
@@ -13,7 +15,9 @@ function ToDoPlace() {
     const classes = useStyles()
     return (
             <form>
-                <TextField id="standard-basic" label="Second Position"
+                <TextField id="standard-basic"
+                           label="Second Position"
+                           fullWidth
                            InputProps={{
                                startAdornment:
                                    <InputAdornment position="start">
@@ -24,7 +28,9 @@ function ToDoPlace() {
 
                            endAdornment:
                     <InputAdornment position="end">
-                        <DeleteIcon/>
+                        <IconButton aria-label="delete">
+                            <DeleteIcon />
+                        </IconButton>
                     </InputAdornment>
                            }}
                 />

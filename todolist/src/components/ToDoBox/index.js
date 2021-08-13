@@ -1,6 +1,7 @@
 import React from 'react';
 import useStyles from "./styles";
 import ToDoFirst from "../ToDoFirst";
+import ToDoPlace from "../ToDoPlace";
 
 
 function ToDoBox() {
@@ -8,6 +9,7 @@ function ToDoBox() {
     return (
         <>
             <ToDoFirst/>
+            <ToDoPlace/>
         </>
     );
 }
