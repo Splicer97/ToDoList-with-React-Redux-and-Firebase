@@ -7,7 +7,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import IconButton from '@material-ui/core/IconButton';
 
 
-function ToDoPlace() {
+function ToDoPlace({title}) {
     const [checked, setChecked] = React.useState(false);
     const handleChange = (event) => {
         setChecked(event.target.checked);
@@ -16,6 +16,7 @@ function ToDoPlace() {
     return (
             <form>
                 <TextField id="standard-basic"
+                           defaultValue={title}
                            label="Second Position"
                            fullWidth
                            InputProps={{

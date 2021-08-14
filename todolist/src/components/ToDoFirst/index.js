@@ -1,14 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from "./styles";
 
-function ToDoFirst() {
+function ToDoFirst({addTodo}) {
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        addTodo(text);
+    }
+    const [text, setText] = useState("");
     const classes = useStyles()
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             <TextField
+                value={text}
+                onChange={(e) => setText(e.target.value)}
                 id="standard-basic"
                 label="What needs to be done?"
                 fullWidth
@@ -23,4 +30,4 @@ function ToDoFirst() {
     );
 }
 
-export default ToDoFirst
+export default ToDoFirst;
