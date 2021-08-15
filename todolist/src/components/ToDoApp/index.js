@@ -34,7 +34,7 @@ function ToDoApp() {
         <>
             <Container maxWidth="sm">
             <ToDoHead/>
-            <ToDoBox  todos={todos}/>
+            <ToDoBox  todos={todos} setTodos={setTodos}/>
         </Container>
         </>
     );
