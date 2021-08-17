@@ -2,10 +2,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles ({
     qwerty: {
-        color: "#d36666",
-        margin: "100px",
-
-
+        color: "#e3d2d1",
+        fontFamily: "Roboto', sans-serif",
+        margin: "50px",
     }
 })
 
