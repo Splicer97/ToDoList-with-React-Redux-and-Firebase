@@ -15,9 +15,8 @@ function ToDoPlace({title, checkTodo, id, isCompleted, deleteTodo}) {
     const todoStyle = isCompleted ? {textDecoration: 'line-through' } : {textDecoration: 'none' };
     return (
             <form>
-                <TextField id="standard-basic"
+                <TextField
                            defaultValue={title}
-                           label="Second Position"
                            fullWidth
                            style={todoStyle}
                            InputProps={{

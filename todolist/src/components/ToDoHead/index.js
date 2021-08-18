@@ -1,21 +1,21 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import useStyles from "./styles";
-import {Grid} from "@material-ui/core";
+import {Grid, Container} from "@material-ui/core";
 
 
 function ToDoHead() {
     const classes = useStyles()
     return (
-        <Grid justifyContent="center">
+            <Grid container justifyContent="center">
             <Typography
                 align="center"
                 classes={{root: classes.qwerty}}
-                variant="h1"
+                variant="inherit"
                 color="primary">
                 todos
             </Typography>
-</Grid>
+            </Grid>
     );
 }
 
