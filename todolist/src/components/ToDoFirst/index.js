@@ -16,7 +16,10 @@ function ToDoFirst({addTodo}) {
             <TextField
 
                 value={text}
-                onChange={(e) => setText(e.target.value)}
+                onChange={
+                    (e) => setText(e.target.value)
+
+                }
                 label="What needs to be done?"
                 fullWidth
                        InputProps={{

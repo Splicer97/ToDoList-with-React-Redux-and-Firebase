@@ -8,6 +8,7 @@ import IconButton from '@material-ui/core/IconButton';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 
+
 function ToDoPlace({title, checkTodo, id, isCompleted, deleteTodo}) {
     const markComplete = () => checkTodo(id)
     const delTodo = () => deleteTodo(id)
@@ -30,6 +31,7 @@ function ToDoPlace({title, checkTodo, id, isCompleted, deleteTodo}) {
                            endAdornment:
                     <InputAdornment position="end">
                         <IconButton
+
                             onClick={delTodo}
                           >
                             <ClearIcon style={{ color: "#e3d2d1" }}/>

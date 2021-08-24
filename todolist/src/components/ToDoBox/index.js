@@ -31,7 +31,9 @@ function ToDoBox({todos, setTodos, checkTodo, deleteTodo}) {
                            deleteTodo={deleteTodo}
                 />
             ))}
-            <ToDoFooter/>
+            <ToDoFooter
+
+            />
         </Box>
         </Container>
     );
