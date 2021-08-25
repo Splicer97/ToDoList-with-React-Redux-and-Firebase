@@ -1,55 +1,54 @@
 import React from 'react';
 import Checkbox from '@material-ui/core/Checkbox';
 import useStyles from "./styles";
-import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import Grid from '@material-ui/core/Grid';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import ClearIcon from '@material-ui/icons/Clear';
 import IconButton from '@material-ui/core/IconButton';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
 import {checkMyTodo, delTodo} from "../../redux/slices/Todo";
 import {useDispatch, useSelector} from "react-redux";
+import {Typography} from "@material-ui/core";
 
 
-function ToDoItem({title}) {
+function ToDoItem({singleToDo}) {
+    const classes = useStyles({isCompleted: singleToDo.isCompleted})
+
     const dispatch = useDispatch();
 
-    const Todo = useSelector((state) => state.todos.collection);
 
-    const checkTodo = (id) => {
-        dispatch(checkMyTodo(id))
+    const checkTodo = () => {
+        dispatch(checkMyTodo(singleToDo.id))
     }
-    const deleteTodo = (id) => {
-        dispatch(delTodo(id))
+    const deleteTodo = () => {
+        dispatch(delTodo(singleToDo.id))
     }
-    const classes = useStyles()
-    const todoStyle = Todo.isCompleted ? {textDecoration: 'line-through'} : {textDecoration: 'none'};
+
+
     return (
-        <form>
-            <TextField
-                defaultValue={title}
-                fullWidth
-                style={todoStyle}
-                InputProps={{
-                    startAdornment:
-                        <InputAdornment position="start">
-                            <Checkbox icon={<RadioButtonUncheckedIcon/>} checkedIcon={<RadioButtonCheckedIcon/>}
-                                      onChange={checkTodo}
-                            />
-                        </InputAdornment>,
+        <Grid item xs={12}>
+           <Grid container>
+               <Grid item>
+                   <FormControlLabel
+                       control={<Checkbox color="primary" />}
+                       // label={singleToDo.title}
+                       onChange={checkTodo}
+                   />
+               </Grid>
+               <Grid item>
+                   <Typography className={classes.root}>{singleToDo.title}</Typography>
+               </Grid>
+               <Grid item>
+                   <IconButton
+                   onClick={deleteTodo}>
+                       x
 
-                    endAdornment:
-                        <InputAdornment position="end">
-                            <IconButton
 
-                                onClick={deleteTodo}
-                            >
-                                <ClearIcon style={{color: "#e3d2d1"}}/>
-                            </IconButton>
-                        </InputAdornment>
-                }}
-            />
-        </form>
+                   </IconButton>
+               </Grid>
+           </Grid>
+        </Grid>
     );
 }
 

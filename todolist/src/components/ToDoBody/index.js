@@ -3,31 +3,29 @@ import useStyles from "./styles";
 import ToDoInput from "../ToDoInput";
 import ToDoItem from "../ToDoItem";
 import ToDoAction from "../ToDoAction";
-import {Box, Container} from "@material-ui/core";
+import {Box, Grid} from "@material-ui/core";
 import {useSelector} from "react-redux";
 
 
-function ToDoBox({ checkTodo}) {
+function ToDoBody() {
     const Todo = useSelector((state) => state.todos.collection);
     const classes = useStyles()
 
     return (
-        <Container>
-            <Box>
-                <ToDoInput/>
+        <Grid item xs={12}>
+            <Grid container>
                 {Todo.map((todo) => (
                     <ToDoItem
                         key={todo.id}
-                        title={todo.title}
-                        id={todo.id}
+                        singleToDo={todo}
+
                     />
                 ))}
                 <ToDoAction
-
                 />
-            </Box>
-        </Container>
+            </Grid>
+        </Grid>
     );
 };
 
-export default ToDoBox;
+export default ToDoBody;

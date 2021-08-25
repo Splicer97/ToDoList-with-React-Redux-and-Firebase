@@ -22,6 +22,7 @@ function ToDoInput() {
         dispatch(addTodo(newTodo))
         e.preventDefault();
         addTodo(text);
+        setText("")
     }
 
     return (

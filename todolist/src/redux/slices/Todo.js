@@ -17,8 +17,7 @@ const slice = createSlice({
         },
         checkMyTodo: (state, action) => {
             const index = state.collection.findIndex(todo => todo.id === action.payload)
-            console.log(index)
-            console.log(action.payload)
+            state.collection[index].isCompleted = !state.collection[index].isCompleted
         },
     }
 })
