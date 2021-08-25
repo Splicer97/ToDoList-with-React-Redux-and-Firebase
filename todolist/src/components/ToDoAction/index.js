@@ -1,8 +1,8 @@
 import React from 'react';
 import useStyles from "./styles";
-import {Paper,Box, Grid, ButtonGroup, Typography, Button} from "@material-ui/core";
+import {Box, Grid, Typography, Button} from "@material-ui/core";
 
-function ToDoFooter() {
+function ToDoAction() {
     const classes = useStyles()
     return (
            <Grid
@@ -28,4 +28,4 @@ function ToDoFooter() {
            </Grid>
     );
 }
- export default ToDoFooter
+ export default ToDoAction

@@ -1,38 +1,36 @@
-import React, {useState} from 'react';
+import React from 'react';
 import ToDoHead from "../ToDoHead";
 import useStyles from "./styles";
 import ToDoBox from "../ToDoBox";
 import {Container, Grid, Paper} from "@material-ui/core";
+import {useDispatch, useSelector} from "react-redux"
+import {delTodo, checkMyTodo} from "../../redux/slices/Todo";
 
 function ToDoApp() {
-
     const classes = useStyles()
-    const [todos, setTodos] = useState([
-    ])
+    const dispatch = useDispatch();
+
+    const Todo = useSelector((state) => state.todos.collection);
+
     const checkTodo = (id) => {
-        setTodos(
-            todos.map((todo => {
-            if (todo.id === id)
-                todo.isCompleted = !todo.isCompleted;
-            return todo
-        })))
+        dispatch(checkMyTodo(id))
     }
+
     const deleteTodo = (id) => {
-        setTodos(todos.filter((todo) => !(todo.id === id)))
+        dispatch(delTodo(id))
     }
 
     return (
         <Container maxWidth="sm">
-        <Grid justifyContent="center">
-            <ToDoHead/>
-            <Paper square classes={{root: classes.shadow}}>
-            <ToDoBox
-                      todos={todos}
-                      checkTodo={checkTodo}
-                      setTodos={setTodos}
-                      deleteTodo={deleteTodo}/>
-        </Paper>
-        </Grid>
+            <Grid justifyContent="center">
+                <ToDoHead/>
+                <Paper square classes={{root: classes.shadow}}>
+                    <ToDoBox
+                        checkTodo={checkTodo}
+                        deleteTodo={deleteTodo}
+                    />
+                </Paper>
+            </Grid>
         </Container>
 
     );

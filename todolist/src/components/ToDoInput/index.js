@@ -3,14 +3,27 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from "./styles";
+import {useDispatch} from "react-redux";
+import {addTodo} from "../../redux/slices/Todo";
+import {v4} from "uuid";
 
-function ToDoFirst({addTodo}) {
+function ToDoInput() {
+    const classes = useStyles();
+    const dispatch = useDispatch();
+
+    const [text, setText] = useState("");
+
     const handleSubmit = (e) => {
+        const newTodo = {
+            id: v4(),
+            title: text,
+            isCompleted: false,
+        }
+        dispatch(addTodo(newTodo))
         e.preventDefault();
         addTodo(text);
     }
-    const [text, setText] = useState("");
-    const classes = useStyles()
+
     return (
         <form onSubmit={handleSubmit}>
             <TextField
@@ -20,7 +33,7 @@ function ToDoFirst({addTodo}) {
                     (e) => setText(e.target.value)
 
                 }
-                label="What needs to be done?"
+                placeholder="What needs to be done?"
                 fullWidth
                        InputProps={{
                            startAdornment:
@@ -33,4 +46,4 @@ function ToDoFirst({addTodo}) {
     );
 }
 
-export default ToDoFirst;
+export default ToDoInput;

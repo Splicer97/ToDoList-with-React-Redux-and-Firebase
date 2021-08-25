@@ -1,9 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
-import {filter} from "lodash";
+import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    todos: [],
-    isCompleted: false,
+    collection: [],
 };
 
 const slice = createSlice({
@@ -12,17 +10,23 @@ const slice = createSlice({
     reducers: {
         reset: () => initialState,
         addTodo: (state, action) => {
-            state.isCompleted = true
+            state.collection = [...state.collection, action.payload]
         },
-        deleteTodo: (state, action) => {
-            state.todos = filter(state.todos, {})
-            state.isCompleted = false
+        delTodo: (state, action) => {
+            state.collection = state.collection.filter((todo) => !(todo.id === action.payload))
         },
-         // setTodo: (state, action) => {
-         // },
-    },
-});
+        checkMyTodo: (state, action) => {
+            const index = state.collection.findIndex(todo => todo.id === action.payload)
+            console.log(index)
+            console.log(action.payload)
+        },
+    }
+})
 
-export const {addTodo, deleteTodo, setTodo} = slice.actions;
+export const {
+    addTodo,
+    delTodo,
+    checkMyTodo
+} = slice.actions;
 
 export default slice.reducer;

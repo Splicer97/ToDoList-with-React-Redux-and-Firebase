@@ -1,40 +1,31 @@
 import React from 'react';
 import useStyles from "./styles";
-import ToDoFirst from "../ToDoFirst";
-import ToDoPlace from "../ToDoPlace";
-import {v4} from 'uuid'
-import ToDoFooter from "../ToDoFooter";
+import ToDoInput from "../ToDoInput";
+import ToDoItem from "../ToDoItem";
+import ToDoAction from "../ToDoAction";
 import {Box, Container} from "@material-ui/core";
+import {useSelector} from "react-redux";
 
 
-function ToDoBox({todos, setTodos, checkTodo, deleteTodo}) {
+function ToDoBox({ checkTodo}) {
+    const Todo = useSelector((state) => state.todos.collection);
     const classes = useStyles()
-    const addTodo = (text) => {
-        const newTodo = {
-            id: v4(),
-            title: text,
-            isCompleted: false,
-        };
-        setTodos([...todos, newTodo]);
-    }
 
     return (
         <Container>
             <Box>
-            <ToDoFirst addTodo={addTodo} setTodos={setTodos}/>
-            {todos.map((todo) => (
-                <ToDoPlace key={todo.id}
-                           title={todo.title}
-                           checkTodo={checkTodo}
-                           id={todo.id}
-                           isCompleted={todo.isCompleted}
-                           deleteTodo={deleteTodo}
-                />
-            ))}
-            <ToDoFooter
+                <ToDoInput/>
+                {Todo.map((todo) => (
+                    <ToDoItem
+                        key={todo.id}
+                        title={todo.title}
+                        id={todo.id}
+                    />
+                ))}
+                <ToDoAction
 
-            />
-        </Box>
+                />
+            </Box>
         </Container>
     );
 };
