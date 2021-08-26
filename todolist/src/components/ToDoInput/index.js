@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from "./styles";
 import {useDispatch} from "react-redux";
 import {addTodo} from "../../redux/slices/Todo";
 import {v4} from "uuid";
+import {Grid, Paper} from "@material-ui/core";
 
 function ToDoInput() {
     const classes = useStyles();
@@ -26,24 +26,35 @@ function ToDoInput() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <TextField
+        <Paper square classes={{root: classes.width}}>
+            <Grid
+                container
+                xs={12}
+            >
+                <Grid
+                    item
+                    xs={1}
+                    justifyContent="center"
+                    alignItems="center"
+                >
+                    <ExpandMoreIcon classes={{root: classes.root}}/>
+                </Grid>
+                <Grid item xs={11}>
 
-                value={text}
-                onChange={
-                    (e) => setText(e.target.value)
-
-                }
-                placeholder="What needs to be done?"
-                fullWidth
-                       InputProps={{
-                           startAdornment:
-                               <InputAdornment position="start">
-                                   <ExpandMoreIcon classes={{root: classes.root}} />
-                               </InputAdornment>,
-                       }}
-            />
-        </form>
+                    <form onSubmit={handleSubmit}>
+                        <TextField
+                            classes={{root: classes.width}}
+                            value={text}
+                            fullWidth
+                            onChange={
+                                (e) => setText(e.target.value)
+                            }
+                            placeholder="What needs to be done?"
+                        />
+                    </form>
+                </Grid>
+            </Grid>
+        </Paper>
     );
 }
 

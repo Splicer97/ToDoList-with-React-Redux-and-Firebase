@@ -1,9 +1,8 @@
 import React from 'react';
 import useStyles from "./styles";
-import ToDoInput from "../ToDoInput";
 import ToDoItem from "../ToDoItem";
 import ToDoAction from "../ToDoAction";
-import {Box, Grid} from "@material-ui/core";
+import { Grid, Paper} from "@material-ui/core";
 import {useSelector} from "react-redux";
 
 
@@ -18,11 +17,12 @@ function ToDoBody() {
                     <ToDoItem
                         key={todo.id}
                         singleToDo={todo}
-
                     />
                 ))}
+                <Paper square>
                 <ToDoAction
                 />
+                </Paper>
             </Grid>
         </Grid>
     );

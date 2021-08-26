@@ -3,21 +3,26 @@ import ToDoHead from "../ToDoHead";
 import useStyles from "./styles";
 import ToDoBody from "../ToDoBody";
 import {Container, Grid, Paper} from "@material-ui/core";
-import {useDispatch, useSelector} from "react-redux"
-import {delTodo, checkMyTodo} from "../../redux/slices/Todo";
 import ToDoInput from "../ToDoInput";
 
 function ToDoApp() {
 
+    const classes = useStyles()
+
     return (
         <Container maxWidth="sm">
-            <Grid container>
+            <Grid container
+                  justifyContent="center"
+            >
                 <ToDoHead/>
-                <ToDoInput/>
-                <ToDoBody/>
+                <Grid item xs={12}>
+                    <Paper square className={{root: classes.shadow}}>
+                        <ToDoInput/>
+                        <ToDoBody/>
+                    </Paper>
+                </Grid>
             </Grid>
         </Container>
-
     );
 }
 

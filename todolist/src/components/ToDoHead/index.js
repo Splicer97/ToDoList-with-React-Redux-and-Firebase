@@ -1,7 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import useStyles from "./styles";
-import {Grid, Container} from "@material-ui/core";
+import {Grid} from "@material-ui/core";
 
 
 function ToDoHead() {

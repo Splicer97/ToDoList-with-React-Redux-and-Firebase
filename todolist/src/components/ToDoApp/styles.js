@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles ({
     shadow: {
         boxShadow:
+                // Эффект стопки листов
             "0 1px 1px rgba(0,0,0,0.15)," +
             /* Второй слой */
             "0 10px 0 -5px #eee," +
@@ -18,8 +19,10 @@ const useStyles = makeStyles ({
             "0 20px 14px   6px rgba(229, 229, 229, 0.5)," +
             "0 30px 16px   4px rgba(229, 229, 229, 0.5)," +
             "0 40px 18px   2px rgba(229, 229, 229, 0.5)" ,
-    }
+    },
+
 })
+
 
 export default useStyles
 
