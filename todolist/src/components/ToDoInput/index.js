@@ -3,9 +3,9 @@ import TextField from '@material-ui/core/TextField';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import useStyles from "./styles";
 import {useDispatch} from "react-redux";
-import {addTodo} from "../../redux/slices/Todo";
+import {addTodo, Show} from "../../redux/slices/Todo";
 import {v4} from "uuid";
-import {Grid, Paper} from "@material-ui/core";
+import {Box, Grid, Paper} from "@material-ui/core";
 
 function ToDoInput() {
     const classes = useStyles();
@@ -14,19 +14,22 @@ function ToDoInput() {
     const [text, setText] = useState("");
 
     const handleSubmit = (e) => {
-        const newTodo = {
+            const newTodo = {
             id: v4(),
             title: text,
             isCompleted: false,
         }
+        if (text !== "") {
         dispatch(addTodo(newTodo))
+        }
         e.preventDefault();
         addTodo(text);
         setText("")
+        dispatch(Show())
     }
 
     return (
-        <Paper square classes={{root: classes.width}}>
+        <Paper square>
             <Grid
                 container
                 xs={12}
@@ -34,13 +37,14 @@ function ToDoInput() {
                 <Grid
                     item
                     xs={1}
+                    container
                     justifyContent="center"
                     alignItems="center"
                 >
                     <ExpandMoreIcon classes={{root: classes.root}}/>
                 </Grid>
-                <Grid item xs={11}>
 
+                <Grid item xs={11}>
                     <form onSubmit={handleSubmit}>
                         <TextField
                             classes={{root: classes.width}}

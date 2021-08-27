@@ -10,8 +10,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {FormControlLabel, Paper, Typography} from "@material-ui/core";
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { green } from '@material-ui/core/colors';
+import {Active, Show, ClearCompleted, ChangeItems} from "../../redux/slices/Todo";
 
-function ToDoItem({singleToDo}) {
+function ToDoItem({singleToDo, isComplete}) {
     const classes = useStyles({isCompleted: singleToDo.isCompleted})
 
     const dispatch = useDispatch();
@@ -19,9 +20,11 @@ function ToDoItem({singleToDo}) {
 
     const checkTodo = () => {
         dispatch(checkMyTodo(singleToDo.id))
+        dispatch(Show())
     }
     const deleteTodo = () => {
         dispatch(delTodo(singleToDo.id))
+        dispatch(Show())
     }
 
 
@@ -31,18 +34,16 @@ function ToDoItem({singleToDo}) {
                   justifyContent="space-between"
                   alignItems="center"
             >
-                <Paper square></Paper>
                 <Grid
                     item
                     xs={1}
                     justifyContent="center"
                 >
                     <Checkbox
+                        checked={isComplete}
                         icon={<RadioButtonUncheckedIcon />} checkedIcon={<CheckCircleIcon style={{ color: green[500] }} />}
                         onChange={checkTodo}
                     />
-
-
                 </Grid>
                 <Grid item xs={10}>
                     <Typography className={classes.root}>{singleToDo.title}</Typography>

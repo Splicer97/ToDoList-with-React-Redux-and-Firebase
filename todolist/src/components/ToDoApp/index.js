@@ -16,7 +16,7 @@ function ToDoApp() {
             >
                 <ToDoHead/>
                 <Grid item xs={12}>
-                    <Paper square className={{root: classes.shadow}}>
+                    <Paper square classes={{root: classes.shadow}}>
                         <ToDoInput/>
                         <ToDoBody/>
                     </Paper>

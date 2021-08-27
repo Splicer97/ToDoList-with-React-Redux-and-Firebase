@@ -4,11 +4,14 @@ import ToDoItem from "../ToDoItem";
 import ToDoAction from "../ToDoAction";
 import { Grid, Paper} from "@material-ui/core";
 import {useSelector} from "react-redux";
+import filter from "lodash/filter"
 
 
 function ToDoBody() {
-    const Todo = useSelector((state) => state.todos.collection);
+    const Todo = useSelector((state) => state.todos.showCollection);
     const classes = useStyles()
+
+
 
     return (
         <Grid item xs={12}>
@@ -17,12 +20,10 @@ function ToDoBody() {
                     <ToDoItem
                         key={todo.id}
                         singleToDo={todo}
+                        isComplete={todo.isCompleted}
                     />
                 ))}
-                <Paper square>
-                <ToDoAction
-                />
-                </Paper>
+                {Todo.length !== 0 ? <ToDoAction/> : ""}
             </Grid>
         </Grid>
     );

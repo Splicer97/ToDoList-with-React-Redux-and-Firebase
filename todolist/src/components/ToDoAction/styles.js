@@ -1,13 +1,19 @@
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 
-const useStyles = makeStyles ({
+const useStyles = makeStyles({
     root: {
         textTransform: "none",
         color: "#c5c5c5",
 
     },
-    textstyle: {
+    textStyle: {
         color: "#c5c5c5",
+    },
+    visible: {
+        visibility: 'visible',
+    },
+    hidden: {
+        visibility: 'hidden',
     }
 })
 

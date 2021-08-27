@@ -1,7 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
+import filter from "lodash/filter";
 
 const initialState = {
     collection: [],
+    showCollection: [],
+    show: "All"
 };
 
 const slice = createSlice({
@@ -13,24 +16,25 @@ const slice = createSlice({
             state.collection = [...state.collection, action.payload]
         },
         delTodo: (state, action) => {
-            state.collection = state.collection.filter((todo) => !(todo.id === action.payload))
+            state.collection = filter(state.collection, (todo) => !(todo.id === action.payload))
         },
         checkMyTodo: (state, action) => {
             const index = state.collection.findIndex(todo => todo.id === action.payload)
             state.collection[index].isCompleted = !state.collection[index].isCompleted
         },
-        All: (state, action) => {
-
-        },
-        Active: (state, action) => {
-
-        },
-        Completed: (state, action) => {
-
-        },
         ClearCompleted: (state, action) => {
-            state.collection = state.collection.filter((todo) => !(todo.id === action.payload))
+            state.collection = filter(state.collection, (todo) => !todo.isCompleted)
         },
+        Show: (state, action) => {
+            if (state.show === "Active") {
+                state.showCollection = filter(state.collection, (todo) => !todo.isCompleted)
+            } else if (state.show === "Completed") {
+                state.showCollection = filter(state.collection, (todo) => todo.isCompleted)
+            } else state.showCollection = state.collection
+        },
+        ChangeItems: (state, action) => {
+            state.show = action.payload
+        }
     }
 })
 
@@ -38,12 +42,9 @@ export const {
     addTodo,
     delTodo,
     checkMyTodo,
-    All,
-    Active,
-    Completed,
     ClearCompleted,
-    NumberActiveTodo,
-    ItemOrItems
+    ChangeItems,
+    Show,
 } = slice.actions;
 
 export default slice.reducer;
