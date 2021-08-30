@@ -11,6 +11,9 @@ const useStyles = makeStyles ({
     list: {
         width: '100%',
         padding: 0,
+    },
+    icon: {
+        color: "green",
     }
 })
 

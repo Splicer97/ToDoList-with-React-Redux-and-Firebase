@@ -46,7 +46,7 @@ function ToDoItem({singleToDo, isComplete}) {
         <Checkbox
           checked={isComplete}
           icon={<RadioButtonUncheckedIcon/>}
-          checkedIcon={<CheckCircleIcon style={{color: green[500]}}/>}
+          checkedIcon={<CheckCircleIcon className={classes.icon}/>}
           onChange={checkTodo}
         />
       </Grid>
