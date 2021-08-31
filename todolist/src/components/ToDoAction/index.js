@@ -1,6 +1,6 @@
 import React from 'react'
 import {useDispatch, useSelector} from "react-redux"
-import {Box, Grid, Typography, Button} from "@material-ui/core"
+import { Grid, Typography, Button } from "@material-ui/core"
 import {filter} from "lodash"
 import pluralize from "pluralize"
 
@@ -44,7 +44,11 @@ function ToDoAction() {
         </Typography>
       </Grid>
       <Grid item xs={6}>
-        <Box>
+        <Grid container
+              direction="row"
+              justifyContent="space-around"
+              alignItems="stretch"
+        >
           <Button
             onClick={() => Change('all')}
             classes={{
@@ -72,7 +76,7 @@ function ToDoAction() {
           >
             Completed
           </Button>
-        </Box>
+      </Grid>
       </Grid>
       <Grid item xs={3}>
         {CompletedTodo.length > 0 && (

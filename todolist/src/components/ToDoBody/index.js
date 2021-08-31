@@ -13,8 +13,6 @@ function ToDoBody() {
 
   const filteredTodos = (params) => {
     switch (params) {
-      case 'all':
-        return todos
       case 'active':
         return filter(todos, (todo) => !todo.isCompleted)
       case 'completed':

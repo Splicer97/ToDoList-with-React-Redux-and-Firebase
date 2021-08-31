@@ -3,7 +3,7 @@ import filter from "lodash/filter"
 
 const initialState = {
     collection: [],
-    show: "All"
+    show: "all"
 }
 
 const slice = createSlice({

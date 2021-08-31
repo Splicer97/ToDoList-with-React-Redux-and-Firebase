@@ -1,4 +1,5 @@
 import React from 'react'
+import {useSelector} from "react-redux";
 import {Container, Grid, Paper} from "@material-ui/core"
 
 //src
@@ -9,7 +10,9 @@ import ToDoInput from "../ToDoInput"
 
 function ToDoApp() {
 
-  const classes = useStyles()
+
+  const Todo = useSelector((state) => state.todos.collection)
+  const classes = useStyles({Todo: Todo})
 
   return (
     <Container maxWidth="sm">
@@ -17,8 +20,11 @@ function ToDoApp() {
         <ToDoHead />
 
         <Grid item xs={12}>
+
+
           <Paper square
-                 classes={{root: classes.shadow}}>
+            className={ classes.shadow}
+            >
             <ToDoInput />
             <ToDoBody />
           </Paper>

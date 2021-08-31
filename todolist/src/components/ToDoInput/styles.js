@@ -17,13 +17,11 @@ const useStyles = makeStyles({
   height: {
     height: "100",
   },
-  padding: {
-    paddingTop: 0,
-  },
   list: {
     width: '100%',
     padding: 0,
-  }
+  },
+
 })
 
 export default useStyles

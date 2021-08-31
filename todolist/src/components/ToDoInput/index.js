@@ -9,6 +9,7 @@ import {Grid,
   List
 } from "@material-ui/core"
 import {v4} from "uuid"
+import {trim} from "lodash"
 
 //src
 import { addTodo } from "../../redux/slices/Todo"
@@ -29,7 +30,9 @@ function ToDoInput() {
       isCompleted: false,
     }
 
-    if (text !== "") {
+    const todoText = trim(text)
+    
+    if (todoText.length > 0) {
       dispatch(addTodo(newTodo))
     }
 
