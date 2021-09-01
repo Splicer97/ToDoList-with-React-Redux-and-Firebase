@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import {useDispatch} from "react-redux"
+import firebase from "../firebase"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {Grid,
   TextField,
@@ -23,7 +24,7 @@ function ToDoInput() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    const todoRef = firebase.database().ref('TodoList');
     const newTodo = {
       id: v4(),
       title: text,
@@ -36,7 +37,9 @@ function ToDoInput() {
       dispatch(addTodo(newTodo))
     }
 
+
     addTodo(text);
+    todoRef.push(newTodo);
     setText("")
   }
 
