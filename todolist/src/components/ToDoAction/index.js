@@ -6,7 +6,7 @@ import pluralize from "pluralize"
 
 // src
 import useStyles from "./styles"
-import {ClearCompleted, ChangeItems} from "../../redux/slices/Todo"
+import {ClearCompleted, ChangeItems, reload} from "../../redux/slices/Todo"
 
 function ToDoAction() {
   const classes = useStyles({})
@@ -17,7 +17,6 @@ function ToDoAction() {
   const ActiveMyTodo = filter(Todos, (todo) => !todo.isCompleted)
   const CompletedTodo = filter(Todos, (todo) => todo.isCompleted)
   const Item = pluralize('item', ActiveMyTodo.length, true)
-
 
   const Change = (status) => {
     dispatch(ChangeItems(status))

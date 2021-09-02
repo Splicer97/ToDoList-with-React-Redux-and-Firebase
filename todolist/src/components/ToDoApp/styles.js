@@ -3,7 +3,8 @@ import {makeStyles} from '@material-ui/core/styles';
 const useStyles = makeStyles({
   shadow:
     {
-    boxShadow: ({Todo}) => Todo.length === 0 ?
+    boxShadow:
+       ({Todo}) => Todo.length === 0 ?
       // серая тень всего полотна
       "0 0px 10px   2px rgba(229, 229, 229, 0.5)," +
       "0 10px 12px   4px rgba(229, 229, 229, 0.5)," +

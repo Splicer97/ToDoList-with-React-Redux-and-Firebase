@@ -1,6 +1,6 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDispatch} from "react-redux"
-import firebase from "../firebase"
+import firebase from "firebase"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {Grid,
   TextField,
@@ -13,33 +13,41 @@ import {v4} from "uuid"
 import {trim} from "lodash"
 
 //src
-import { addTodo } from "../../redux/slices/Todo"
+import { addTodo, reload } from "../../redux/slices/Todo"
 import useStyles from "./styles"
+import { db } from "../myFirebase"
 
 function ToDoInput() {
   const classes = useStyles()
-  const dispatch = useDispatch()
+   const dispatch = useDispatch()
 
   const [text, setText] = useState("")
 
+
   const handleSubmit = (e) => {
     e.preventDefault()
-    const todoRef = firebase.database().ref('TodoList');
-    const newTodo = {
-      id: v4(),
-      title: text,
-      isCompleted: false,
-    }
+    // const newTodo = {
+    //   id: v4(),
+    //   title: text,
+    //   isCompleted: false,
+    // }
 
     const todoText = trim(text)
     
     if (todoText.length > 0) {
-      dispatch(addTodo(newTodo))
+      // dispatch(addTodo(newTodo))
+      db.collection("TodoList").add({
+        title: text,
+        isCompleted: false,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      })
+
     }
 
-
+    dispatch(reload(db.collection("TodoList")))
     addTodo(text);
-    todoRef.push(newTodo);
+
+    // db.collection.push(newTodo);
     setText("")
   }
 

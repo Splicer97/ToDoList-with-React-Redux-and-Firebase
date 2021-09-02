@@ -1,5 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit"
 import filter from "lodash/filter"
+import firebase from "firebase"
+import { db } from "../../components/myFirebase"
 
 const initialState = {
     collection: [],
@@ -11,6 +13,9 @@ const slice = createSlice({
     initialState,
     reducers: {
         reset: () => initialState,
+        reload: (state, action) => {
+            state.collection = action.payload
+        },
         addTodo: (state, action) => {
             state.collection = [...state.collection, action.payload]
         },
@@ -36,6 +41,7 @@ export const {
     checkMyTodo,
     ClearCompleted,
     ChangeItems,
+  reload,
 } = slice.actions;
 
 export default slice.reducer;
