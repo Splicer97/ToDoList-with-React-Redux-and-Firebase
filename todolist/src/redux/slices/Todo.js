@@ -28,8 +28,6 @@ const slice = createSlice({
 })
 
 export const {
-    addTodo,
-    ClearCompleted,
     ChangeItems,
   reload,
 } = slice.actions;
