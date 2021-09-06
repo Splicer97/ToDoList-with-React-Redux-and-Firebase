@@ -1,5 +1,4 @@
-import React, {useEffect, useState} from 'react'
-import {useDispatch} from "react-redux"
+import React, { useState } from 'react'
 import firebase from "firebase"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import {Grid,
@@ -9,45 +8,34 @@ import {Grid,
   Divider,
   List
 } from "@material-ui/core"
-import {v4} from "uuid"
 import {trim} from "lodash"
 
 //src
-import { addTodo, reload } from "../../redux/slices/Todo"
 import useStyles from "./styles"
 import { db } from "../myFirebase"
 
 function ToDoInput() {
   const classes = useStyles()
-   const dispatch = useDispatch()
 
   const [text, setText] = useState("")
 
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // const newTodo = {
-    //   id: v4(),
-    //   title: text,
-    //   isCompleted: false,
-    // }
 
     const todoText = trim(text)
-    
+
+
     if (todoText.length > 0) {
-      // dispatch(addTodo(newTodo))
       db.collection("TodoList").add({
         title: text,
         isCompleted: false,
-        timestamp: firebase.firestore.FieldValue.serverTimestamp()
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       })
 
     }
 
-    dispatch(reload(db.collection("TodoList")))
-    addTodo(text);
 
-    // db.collection.push(newTodo);
     setText("")
   }
 

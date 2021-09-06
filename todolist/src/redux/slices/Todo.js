@@ -1,7 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit"
 import filter from "lodash/filter"
-import firebase from "firebase"
-import { db } from "../../components/myFirebase"
 
 const initialState = {
     collection: [],
@@ -15,12 +13,6 @@ const slice = createSlice({
         reset: () => initialState,
         reload: (state, action) => {
             state.collection = action.payload
-        },
-        addTodo: (state, action) => {
-            state.collection = [...state.collection, action.payload]
-        },
-        delTodo: (state, action) => {
-            state.collection = filter(state.collection, (todo) => !(todo.id === action.payload))
         },
         checkMyTodo: (state, action) => {
             const index = state.collection.findIndex(todo => todo.id === action.payload)
@@ -37,8 +29,6 @@ const slice = createSlice({
 
 export const {
     addTodo,
-    delTodo,
-    checkMyTodo,
     ClearCompleted,
     ChangeItems,
   reload,

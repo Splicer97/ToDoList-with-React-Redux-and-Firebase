@@ -1,6 +1,4 @@
 import React from 'react'
-import {useDispatch} from "react-redux"
-import firebase from "firebase";
 import {
   Checkbox,
   Grid,
@@ -15,7 +13,6 @@ import ClearIcon from '@material-ui/icons/Clear'
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 
 // src
-import {checkMyTodo, delTodo} from "../../redux/slices/Todo"
 import useStyles from "./styles"
 import { db } from "../myFirebase"
 
@@ -23,10 +20,9 @@ import { db } from "../myFirebase"
 
 
 
-function ToDoItem({singleToDo, isComplete, id}) {
+  function ToDoItem({singleToDo, isComplete, id, timestamp}) {
   const classes = useStyles({isCompleted: singleToDo.isCompleted})
 
-  const dispatch = useDispatch()
 
   function deleteTodo() {
     db.collection("TodoList").doc(id).delete();
@@ -37,14 +33,6 @@ function ToDoItem({singleToDo, isComplete, id}) {
       isCompleted: !isComplete,
     });
   }
-
-  // const checkTodo = () => {
-  //   dispatch(checkMyTodo(singleToDo.id))
-  // }
-
-  // const deleteTodo = () => {
-  //   dispatch(delTodo(singleToDo.id))
-  // }
 
   return (
     <List className={classes.list}>

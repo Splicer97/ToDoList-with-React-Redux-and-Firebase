@@ -6,7 +6,8 @@ import pluralize from "pluralize"
 
 // src
 import useStyles from "./styles"
-import {ClearCompleted, ChangeItems, reload} from "../../redux/slices/Todo"
+import { ChangeItems } from "../../redux/slices/Todo"
+import {db} from "../myFirebase";
 
 function ToDoAction() {
   const classes = useStyles({})
@@ -21,10 +22,15 @@ function ToDoAction() {
   const Change = (status) => {
     dispatch(ChangeItems(status))
   }
-  const ClearCompletedTodo = () => {
-    dispatch(ClearCompleted())
+  function ClearCompletedTodo() {
+    db.collection("TodoList").where("isCompleted", "==", true)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          db.collection("TodoList").doc(doc.id).delete()
+        });
+      })
   }
-
   return (
     <Grid
       container
