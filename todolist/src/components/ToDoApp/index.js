@@ -1,41 +1,38 @@
-import React, {useState} from 'react';
-import ToDoHead from "../ToDoHead";
-import useStyles from "./styles";
-import ToDoBox from "../ToDoBox";
-import {Container, Grid, Paper} from "@material-ui/core";
+import React from 'react'
+import {useSelector} from "react-redux";
+import {Container, Grid, Paper} from "@material-ui/core"
+
+//src
+import useStyles from "./styles"
+import ToDoHead from "../ToDoHead"
+import ToDoBody from "../ToDoBody"
+import ToDoInput from "../ToDoInput"
 
 function ToDoApp() {
+  const Todo = useSelector((state) => state.todos.collection)
+  const classes = useStyles({Todo: Todo})
 
-    const classes = useStyles()
-    const [todos, setTodos] = useState([
-    ])
-    const checkTodo = (id) => {
-        setTodos(
-            todos.map((todo => {
-            if (todo.id === id)
-                todo.isCompleted = !todo.isCompleted;
-            return todo
-        })))
-    }
-    const deleteTodo = (id) => {
-        setTodos(todos.filter((todo) => !(todo.id === id)))
-    }
 
-    return (
-        <Container maxWidth="sm">
-        <Grid justifyContent="center">
-            <ToDoHead/>
-            <Paper square classes={{root: classes.shadow}}>
-            <ToDoBox
-                      todos={todos}
-                      checkTodo={checkTodo}
-                      setTodos={setTodos}
-                      deleteTodo={deleteTodo}/>
-        </Paper>
+  return (
+    <Container maxWidth="sm">
+      <Grid container justifyContent="center">
+        <ToDoHead />
+
+        <Grid item xs={12}>
+
+
+          <Paper square
+            className={ classes.shadow}
+            >
+            <ToDoInput />
+            <ToDoBody />
+          </Paper>
         </Grid>
-        </Container>
 
-    );
+      </Grid>
+
+    </Container>
+  );
 }
 
 export default ToDoApp;

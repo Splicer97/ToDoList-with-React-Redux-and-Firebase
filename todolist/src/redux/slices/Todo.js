@@ -1,28 +1,35 @@
-import { createSlice } from "@reduxjs/toolkit";
-import {filter} from "lodash";
+import {createSlice} from "@reduxjs/toolkit"
+import filter from "lodash/filter"
 
 const initialState = {
-    todos: [],
-    isCompleted: false,
-};
+    collection: [],
+    show: "all"
+}
 
 const slice = createSlice({
     name: "todos",
     initialState,
     reducers: {
         reset: () => initialState,
-        addTodo: (state, action) => {
-            state.isCompleted = true
+        reload: (state, action) => {
+            state.collection = action.payload
         },
-        deleteTodo: (state, action) => {
-            state.todos = filter(state.todos, {})
-            state.isCompleted = false
+        checkMyTodo: (state, action) => {
+            const index = state.collection.findIndex(todo => todo.id === action.payload)
+            state.collection[index].isCompleted = !state.collection[index].isCompleted
         },
-         // setTodo: (state, action) => {
-         // },
-    },
-});
+        ClearCompleted: (state, action) => {
+            state.collection = filter(state.collection, (todo) => !todo.isCompleted)
+        },
+        ChangeItems: (state, action) => {
+            state.show = action.payload
+        }
+    }
+})
 
-export const {addTodo, deleteTodo, setTodo} = slice.actions;
+export const {
+    ChangeItems,
+  reload,
+} = slice.actions;
 
 export default slice.reducer;
